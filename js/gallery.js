@@ -11,6 +11,7 @@ function renderGallery() {
 
         return `
         <div class="col-6 col-md-3 col-lg-2 mb-4 d-flex flex-column align-items-center">
+            <!-- CAMBIA QUESTO href: punta al file vero .html con il parametro ?id= -->
             <a href="character.html?id=${char.id}" onclick="localStorage.setItem('selectedChar', '${char.id}')" style="text-decoration: none; color: inherit;">                
                 <div class="gacha-icon-wrapper">
                     <div class="rarity-bg-layer" style="background-image: url('${char.background}');">
