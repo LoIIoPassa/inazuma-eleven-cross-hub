@@ -1,0 +1,97 @@
+/* --- Base --- */
+body {
+    background-color: #0d0d0d !important;
+    color: #e0e0ff !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Wrapper della Card (Il contenitore quadrato 140x140) --- */
+.gacha-icon-wrapper {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    margin: 0 auto;
+    /* Nessun overflow hidden globale qui, altrimenti il frame si taglia male */
+}
+
+/* --- Layer 1: Sfondo Rarity (Con i bordi arrotondati interni) --- */
+.rarity-bg-layer {
+    position: absolute;
+    inset: 4px; /* Lascia 4px di spazio dal bordo del wrapper */
+    border-radius: 18px; /* Arrotonda solo lo sfondo interno */
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden; /* Taglia l'immagine personaggio che sennò uscirebbe da questo div arrotondato */
+    background-size: cover;
+    background-position: center;
+}
+
+/* --- Layer 2: Personaggio (Dentro la rarity-bg-layer) --- */
+.personaje-imagen {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: contain; /* L'immagine originale non viene distorta */
+    z-index: 2;
+    transform: scale(1.25); /* LO ZOOM CORRETTO: Ingrandisce l'immagine del 25% */
+    transform-origin: center center; /* Parte dal centro, taglia gambe, si fissa su testa/busto */
+    pointer-events: none;
+    background: transparent !important;
+}
+
+/* --- Layer 3: Frame / Cornice (Sopra Sfondo e Personaggio) --- */
+.frame-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: fill;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* --- Layer 4: Hud Superiore Sinistra (Elemento e Ruolo) --- */
+.hud-top-left {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 4;
+}
+.atributo-tag { width: 32px; height: 32px; object-fit: contain; }
+.posicion-tag { width: 29px; height: 17px; object-fit: contain; margin-top: -3px; }
+
+/* --- Layer 5: Stelle (Basso a sinistra, curve e sovrapposte) --- */
+.stars-curved-container {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    display: flex;
+    flex-direction: column-reverse; /* Inverte l'ordine per impilare dal basso */
+    z-index: 4;
+    background: transparent;
+    padding: 0;
+}
+
+.star-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.9)); /* Ombra per renderle leggibili */
+}
+
+/* Effetto curvo delle stelle come nell'originale */
+.star-icon:nth-child(1) { transform: translateX(1px) translateY(0px); }
+.star-icon:nth-child(2) { transform: translateX(-1px) translateY(-1px); }
+.star-icon:nth-child(3) { transform: translateX(-3px) translateY(-3px); }
+
+/* --- Nome personaggio sotto la card --- */
+.personaje-nombre {
+    margin-top: 8px;
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}

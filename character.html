@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dettaglio Personaggio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #0d0d0d; color: #e0e0e0; }
+        .bg-dark { background-color: #1c1c1c !important; }
+        .text-info { color: #0dcaf0 !important; }
+    </style>
+</head>
+<body>
+
+<div class="container py-5" style="max-width: 1400px;">
+    <div class="row g-4">
+        <!-- Sidebar -->
+        <div class="col-lg-4 col-xl-3 text-center">
+            <div class="bg-dark p-3 rounded-3 border border-secondary shadow mb-4">
+                <img id="char-img" src="" alt="Personaggio" class="img-fluid rounded mb-3">
+                <h2 id="char-name" class="h4 mb-3 text-info">Caricamento...</h2>
+                <div class="d-flex justify-content-center gap-4 mb-3">
+                    <img id="element-icon" src="" style="height: 45px;">
+                    <img id="position-icon" src="" style="height: 45px;">
+                </div>
+                <div id="tags-container" class="d-flex justify-content-center gap-2 flex-wrap border-top border-secondary pt-3"></div>
+            </div>
+
+            <div class="bg-dark p-3 rounded-3 border border-secondary shadow text-start">
+                <div class="d-flex justify-content-between align-items-center border-bottom border-secondary pb-2 mb-3">
+                    <span class="text-info fw-bold fs-5">Statistiche</span>
+                    <div class="btn-group btn-group-sm">
+                        <button id="btn-lv1" class="btn btn-outline-info active">Lv. 1</button>
+                        <button id="btn-lv300" class="btn btn-outline-info">Lv. 300</button>
+                    </div>
+                </div>
+                <ul id="stats-list" class="list-unstyled"></ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-lg-8 col-xl-9">
+            <h3 class="mb-4 text-info">Tecniche</h3>
+            <div id="tecniche-container"></div>
+
+            <h3 class="mb-4 mt-5 text-info">Passive</h3>
+            <div id="passive-container"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Bundle JavaScript di Bootstrap (Necessario per le Tab e i componenti interattivi) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Il tuo script principale -->
+<script type="module" src="js/main.js"></script>
+
+</body>
+</html>
