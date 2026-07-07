@@ -6,12 +6,12 @@ function renderGallery() {
 
     grid.innerHTML = characterRegistry.map(char => {
         const starsHTML = Array(char.stars).fill(
-            `<img src="/img/Frm_GachaIcon/Icon_GradeStar.png" class="star-icon">`
+            `<img src="img/Frm_GachaIcon/Icon_GradeStar.png" class="star-icon">`
         ).join('');
 
         return `
         <div class="col-6 col-md-3 col-lg-2 mb-4 d-flex flex-column align-items-center">
-            <a href="/characters/${char.id}" onclick="localStorage.setItem('selectedChar', '${char.id}')" style="text-decoration: none; color: inherit;">                
+            <a href="characters.html?id=${char.id}" onclick="localStorage.setItem('selectedChar', '${char.id}')" style="text-decoration: none; color: inherit;">                
                 <div class="gacha-icon-wrapper">
                     <div class="rarity-bg-layer" style="background-image: url('${char.background}');">
                         <img src="${char.thumb}" class="personaje-imagen" alt="char">
@@ -30,5 +30,4 @@ function renderGallery() {
         </div>`;
     }).join('');
 }
-
 document.addEventListener('DOMContentLoaded', renderGallery);
