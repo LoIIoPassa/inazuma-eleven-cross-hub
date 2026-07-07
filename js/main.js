@@ -4,20 +4,16 @@ import { passivesLibrary } from './Passive/library.js';
 let db = {};
 
 async function init() {
-    console.log("Inizializzazione database dinamica...");
+    console.log("Inizializzazione database...");
 
-    // 1. Cerca il parametro ?id= nell'URL
     const urlParams = new URLSearchParams(window.location.search);
     let charId = urlParams.get('id');
 
-    // 2. Se l'URL non ha l'id, prova a pescarlo dalla memoria (la nostra rete di sicurezza!)
     if (!charId) {
         charId = localStorage.getItem('selectedChar');
     }
 
-    // 3. Fallback di emergenza assoluta
     if (!charId) {
-        console.warn("Nessun ID trovato, carico personaggio di default.");
         charId = 'axelBlazeIEJapan';
     }
 
@@ -33,12 +29,10 @@ async function init() {
             passives: passivesLibrary.filter(p => charData.myPassivesIds.includes(p.id))
         };
 
-        // Render base
         document.getElementById('char-name').textContent = db.name;
-        document.getElementById('char-img').src = db.characterImg || db.thumb; // Mostra img grande se c'è
+        document.getElementById('char-img').src = db.characterImg || db.thumb;
         document.getElementById('element-icon').src = db.element;
         document.getElementById('position-icon').src = db.position;
-
         document.getElementById('tags-container').innerHTML = db.tags.map(t => `<img src="${t}" style="height: 38px;" alt="Tag">`).join('');
 
         document.getElementById('btn-lv1').addEventListener('click', () => renderStats('lv1'));
@@ -47,7 +41,6 @@ async function init() {
         renderStats('lv1');
         renderTechniques();
         renderPassives();
-
     } catch (err) {
         console.error("Errore caricamento:", err);
     }
@@ -56,8 +49,6 @@ async function init() {
 function renderStats(level) {
     const statsList = document.getElementById('stats-list');
     statsList.innerHTML = '';
-
-    // Aggiorna stile bottoni
     document.getElementById('btn-lv1').classList.toggle('active', level === 'lv1');
     document.getElementById('btn-lv300').classList.toggle('active', level === 'lv300');
 
@@ -76,7 +67,6 @@ function renderStats(level) {
 function renderTechniques() {
     const tecContainer = document.getElementById('tecniche-container');
     if (!tecContainer) return;
-
     tecContainer.innerHTML = '';
     Object.values(db.techniques).forEach((t, tIdx) => {
         let tabs = '', content = '';
@@ -101,7 +91,6 @@ function renderTechniques() {
 function renderPassives() {
     const passContainer = document.getElementById('passive-container');
     if (!passContainer) return;
-
     passContainer.innerHTML = '';
     db.passives.forEach((p, pIdx) => {
         let tabs = '', content = '';
@@ -114,5 +103,4 @@ function renderPassives() {
         passContainer.innerHTML += `<div class="card bg-dark border-secondary mb-4 shadow"><div class="card-header bg-secondary text-white d-flex justify-content-between"><strong>${p.title}</strong><small class="text-light opacity-75">ID: ${p.id}</small></div><div class="card-body"><ul class="nav nav-tabs border-secondary mb-3">${tabs}</ul><div class="tab-content">${content}</div></div></div>`;
     });
 }
-
 document.addEventListener('DOMContentLoaded', init);
