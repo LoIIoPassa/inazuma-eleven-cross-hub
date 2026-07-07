@@ -20,7 +20,7 @@ export const charData = {
         "Tecnica": { lv1: 37, lv300: 2682, icon: "img/Status/Icon_Status_Technic.png" },
         "Blocco": { lv1: 49, lv300: 3678, icon: "img/Status/Icon_Status_Block.png" },
         "Parata": { lv1: 37, lv300: 2676, icon: "img/Status/Icon_Status_Catch.png" },
-        "Velocità": { lv1: 4, lv300: 4, icon: "/img/Status/Icon_Status_Speed.png" }
+        "Velocità": { lv1: 4, lv300: 4, icon: "img/Status/Icon_Status_Speed.png" }
     },
 
     myTechniques: ["真空魔", "ジャッジスルー"],
