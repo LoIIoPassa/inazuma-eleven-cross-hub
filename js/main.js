@@ -4,14 +4,19 @@ import { passivesLibrary } from './Passive/library.js';
 let db = {};
 
 async function init() {
-    // Legge il percorso es: /characters/judeSharpIEJapan
-    const path = window.location.pathname; 
-    const pathParts = path.split('/').filter(p => p); 
-    
-    // Se l'URL è /characters/nome, prendi il nome
-    let charId = (pathParts[0] === 'characters' && pathParts[1]) ? pathParts[1] : null;
+    console.log("Inizializzazione database...");
 
-    // Se non sei in una pagina personaggio (es. home), controlla se c'è un ID nel localStorage o il default
+    // 1. Prendi il percorso (es: /characters/judeSharpIEJapan)
+    const path = window.location.pathname;
+    const pathParts = path.split('/').filter(p => p);
+
+    // 2. Prova a identificare il personaggio dall'URL
+    let charId = null;
+    if (pathParts[0] === 'characters' && pathParts[1]) {
+        charId = pathParts[1];
+    }
+
+    // 3. Se non trovato nell'URL, pesca dalla memoria o default
     if (!charId) {
         charId = localStorage.getItem('selectedChar') || 'axelBlazeIEJapan';
     }
